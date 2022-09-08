@@ -1,6 +1,6 @@
-const data = {
-  message: 'Hello vue',
-  messageRu: 'Привет vue',
-};
+// const data = {
+//   message: 'Hello vue',
+//   messageRu: 'Привет vue',
+// };
 
-export default data;
+// export default data;
