@@ -6,8 +6,6 @@ Vue.config.productionTip = false;
 new Vue({
   render: (h) => h(App),
 }).$mount('#app');
-
 // createApp(App).mount('#app');
-
 alert(data.message);
 alert(data.messageRu);
