@@ -1,3 +1,4 @@
+<!-- eslint-disable quotes -->
 <template>
   <ul class="catalog__list">
     <ProductItem
@@ -9,11 +10,11 @@
 </template>
 
 <script>
-import ProductItem from "@/components/ProductItem.vue";
+import ProductItem from '@/components/ProductItem.vue';
 
 export default {
-  name: "ProductList",
-  props: ["products"],
+  name: 'ProductList',
+  props: ['products'],
 
   components: {
     ProductItem,
