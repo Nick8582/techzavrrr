@@ -36,8 +36,7 @@
                 class="colors__radio sr-only"
                 type="radio"
                 name="color"
-                value="color.color"
-                checked=""
+                :value="color.color"
               />
               <span class="colors__value" :style="`background-color: ${color.color}`">
               </span>
@@ -157,9 +156,10 @@ export default {
       currentPriceFrom: 0,
       currentPriceTo: 0,
       currentCategoryId: 0,
+      currentColor: 0,
     };
   },
-  props: ['priceFrom', 'priceTo', 'categoryId'],
+  props: ['priceFrom', 'priceTo', 'categoryId', 'color'],
   computed: {
     categories() {
       return categories;
