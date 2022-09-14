@@ -41,7 +41,7 @@ export default {
       filterCategoryId: 0,
       page: 1,
       productsPerPage: 6,
-      currentColor: '',
+      currentColor: 0,
     };
   },
   computed: {
