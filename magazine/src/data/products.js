@@ -5,7 +5,7 @@ export default [
     title: 'Радионяня Motorola MBP16',
     price: 3690,
     image: '/img/radio.jpg',
-    colorsId: ['#73B6EA', '#939393', '#000'],
+    colorsId: 2,
   },
   {
     id: 2,
@@ -34,7 +34,7 @@ export default [
     title: 'Смартфон Xiaomi Mi A3 4/64GB Android One',
     price: 14960,
     image: '/img/phone-2.jpg',
-    colorsId: ['#73B6EA', '#FFBE15', '#000'],
+    colorsId: 1,
   },
   {
     id: 6,
@@ -42,7 +42,7 @@ export default [
     title: 'Смартфон Xiaomi Redmi 6/128GB',
     price: 8960,
     image: '/img/phone-3.jpg',
-    colorsId: ['#73B6EA', '#939393', '#000'],
+    colorsId: 3,
   },
   {
     id: 7,

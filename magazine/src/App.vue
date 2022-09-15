@@ -11,7 +11,7 @@
     </div>
 
     <div class="content__catalog">
-      <ProductFilter :color-id.sync="currentColor" :price-from.sync="filterPriceFrom" :price-to.sync="filterPriceTo" :category-id.sync="filterCategoryId" />
+      <ProductFilter :price-from.sync="filterPriceFrom" :price-to.sync="filterPriceTo" :category-id.sync="filterCategoryId" :color-id.sync="filterColorId"/>
 
       <section class="catalog">
         <ProductList :products="products" />
@@ -41,7 +41,7 @@ export default {
       filterCategoryId: 0,
       page: 1,
       productsPerPage: 6,
-      currentColor: 0,
+      filterColorId: 0,
     };
   },
   computed: {
@@ -59,9 +59,9 @@ export default {
         // eslint-disable-next-line max-len
         filteredProducts = filteredProducts.filter((product) => product.сategoryId === this.filterCategoryId);
       }
-      if (this.currentColor > 0) {
+      if (this.filterColorId > 0) {
         // eslint-disable-next-line max-len
-        filteredProducts = filteredProducts.filter((product) => product.colorsId === this.currentColor);
+        filteredProducts = filteredProducts.filter((product) => product.colorsId === this.filterColorId);
       }
       return filteredProducts;
     },
