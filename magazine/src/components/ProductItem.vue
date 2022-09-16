@@ -22,7 +22,11 @@
             :value="color"
             v-model="colorM"
           />
-          <span class="colors__value" :style="`background-color: ${color}`"></span>
+
+          <span
+            class="colors__value"
+            :style="`background-color: ${colorItems[color-1].color}`">
+          </span>
         </label>
       </li>
     </ul>
@@ -30,13 +34,21 @@
 </template>
 
 <script>
+import colors from '@/data/colors';
+
 export default {
   name: 'ProductItem',
   data() {
     return {
       colorM: '',
+      colorItems: colors,
     };
   },
-  props: ['product'],
+  props: ['product', 'colors'],
+  computed: {
+    categories() {
+      return colors;
+    },
+  },
 };
 </script>

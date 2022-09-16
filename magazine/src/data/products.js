@@ -5,7 +5,7 @@ export default [
     title: 'Радионяня Motorola MBP16',
     price: 3690,
     image: '/img/radio.jpg',
-    colorsId: 2,
+    colorsId: [1, 3, 5],
   },
   {
     id: 2,
@@ -13,6 +13,7 @@ export default [
     title: 'Ультразвуковая зубная щётка Playbrush Smart Sonic',
     price: 5660,
     image: '/img/toothbrush.jpg',
+    colorsId: [2, 4, 6],
   },
   {
     id: 3,
@@ -34,7 +35,7 @@ export default [
     title: 'Смартфон Xiaomi Mi A3 4/64GB Android One',
     price: 14960,
     image: '/img/phone-2.jpg',
-    colorsId: 1,
+    colorsId: [2, 4, 7],
   },
   {
     id: 6,
