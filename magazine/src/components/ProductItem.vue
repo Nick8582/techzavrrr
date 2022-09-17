@@ -1,3 +1,4 @@
+<!-- eslint-disable linebreak-style -->
 <!-- eslint-disable vuejs-accessibility/label-has-for -->
 <template>
   <li class="catalog__item">
