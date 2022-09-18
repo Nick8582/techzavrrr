@@ -86,6 +86,7 @@ export default [
     title: 'Наушники AirPods с беспроводным зарядным футляром',
     price: 16650,
     image: '/img/airpods.jpg',
+    colorsId: [2, 4],
   },
   {
     id: 12,
@@ -93,6 +94,7 @@ export default [
     title: 'Наушники Sony',
     price: 30690,
     image: '/img/headphones.jpg',
+    colorsId: [1, 5],
   },
   {
     id: 13,
@@ -107,6 +109,7 @@ export default [
     title: 'Фен Econ',
     price: 2090,
     image: '/img/econ.jpg',
+    colorsId: [1, 4, 5, 6],
   },
   {
     id: 15,
@@ -114,6 +117,7 @@ export default [
     title: 'Стиральная машина INDESIT',
     price: 20995,
     image: '/img/indesit.jpg',
+    colorsId: [1, 6, 7],
   },
   {
     id: 16,
@@ -121,6 +125,7 @@ export default [
     title: 'Телевизор Samsung "55',
     price: 65900,
     image: '/img/samsung.jpg',
+    colorsId: [1, 2, 5],
   },
   {
     id: 17,
@@ -128,6 +133,7 @@ export default [
     title: 'Компьютерная акустика Sven',
     price: 5120,
     image: '/img/sven.jpg',
+    colorsId: [1, 3, 7],
   },
   {
     id: 18,
@@ -135,6 +141,7 @@ export default [
     title: 'Системный блок',
     price: 138560,
     image: '/img/termaltake.jpg',
+    colorsId: [2, 3, 5],
   },
   {
     id: 19,
@@ -142,6 +149,7 @@ export default [
     title: 'Роутер D-Link',
     price: 5950,
     image: '/img/dlink.jpg',
+    colorsId: [3, 5, 7],
   },
   {
     id: 20,
@@ -149,6 +157,7 @@ export default [
     title: 'Телефон IPhone',
     price: 89000,
     image: '/img/iphone-12.jpg',
+    colorsId: [5, 6, 7],
   },
   {
     id: 21,
@@ -156,5 +165,6 @@ export default [
     title: 'Телефон Samsung Galaxy s21 Ultra 16/512Gb',
     price: 76000,
     image: '/img/samsung-galaxy.jpg',
+    colorsId: [1, 2, 5],
   },
 ];
