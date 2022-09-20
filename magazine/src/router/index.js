@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import MainPage from '@/pages/MainPage.vue';

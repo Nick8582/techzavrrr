@@ -1,3 +1,4 @@
+<!-- eslint-disable linebreak-style -->
 <!-- eslint-disable vue/no-deprecated-filter -->
 <!-- eslint-disable vuejs-accessibility/label-has-for -->
 <!-- eslint-disable vuejs-accessibility/form-control-has-label -->
@@ -112,7 +113,7 @@
 
             <div class="item__row">
               <div class="form__counter">
-                <button type="button" aria-label="Убрать один товар">
+                <button type="button" aria-label="Убрать один товар" @mousedown="dizcriment">
                   <svg width="12" height="12" fill="currentColor">
                     <use xlink:href="#icon-minus"></use>
                   </svg>
@@ -120,7 +121,7 @@
 
                 <input type="text" v-model.number="productAmount" />
 
-                <button type="button" aria-label="Добавить один товар">
+                <button type="button" aria-label="Добавить один товар" @mousedown="increment">
                   <svg width="12" height="12" fill="currentColor">
                     <use xlink:href="#icon-plus"></use>
                   </svg>
@@ -229,6 +230,14 @@ export default {
         'addProductToCart',
         { productId: this.product.id, amount: this.productAmount },
       );
+    },
+    increment() {
+      this.$emit('update:productAmount', this.productAmount += 1);
+    },
+    dizcriment() {
+      if (this.productAmount > 1) {
+        this.$emit('update:productAmount', this.productAmount -= 1);
+      }
     },
   },
 };
