@@ -7,7 +7,7 @@
     <div class="content__top">
       <ul class="breadcrumbs">
         <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link" href="index.html"> Каталог </a>
+          <a class="breadcrumbs__link" :to="{ name: 'main' }"> Каталог </a>
         </li>
         <li class="breadcrumbs__item">
           <a class="breadcrumbs__link"> Корзина </a>
@@ -47,12 +47,16 @@
 import numberFormat from '@/helpers/numberFormat';
 import { mapGetters } from 'vuex';
 import CartItem from '@/components/CartItem.vue';
+import gotoPage from '@/helpers/gotoPage';
 
 export default {
   components: { CartItem },
   filters: { numberFormat },
   computed: {
     ...mapGetters({ products: 'cartDetailProducts', totalPrice: 'cartTotalPrice' }),
+  },
+  methods: {
+    gotoPage,
   },
 };
 </script>
