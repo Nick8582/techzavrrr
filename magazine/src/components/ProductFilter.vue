@@ -142,8 +142,9 @@
 </template>
 
 <script>
-import categories from '@/data/categories';
 import colors from '@/data/colors';
+import axios from 'axios';
+import { API_BASE_URL } from '../config';
 
 export default {
   data() {
@@ -152,12 +153,14 @@ export default {
       currentPriceTo: 0,
       currentCategoryId: 0,
       currentColor: 0,
+
+      categoriesData: null,
     };
   },
   props: ['priceFrom', 'priceTo', 'categoryId', 'colorId'],
   computed: {
     categories() {
-      return categories;
+      return this.categoriesData ? this.categoriesData.items : [];
     },
     colors() {
       return colors;
@@ -190,6 +193,14 @@ export default {
       this.$emit('update:categoryId', 0);
       this.$emit('update:colorId', 0);
     },
+    loadCategories() {
+      axios.get(`${API_BASE_URL}/api/productCategories`)
+        // eslint-disable-next-line no-return-assign
+        .then((response) => this.categoriesData = response.data);
+    },
+  },
+  created() {
+    this.loadCategories();
   },
 };
 </script>
