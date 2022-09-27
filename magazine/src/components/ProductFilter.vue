@@ -33,7 +33,7 @@
           <li class="colors__item" v-for="color in colors" :key="color.id">
             <label class="colors__label" >
               <input v-model="currentColorId" class="colors__radio sr-only" type="radio" name="color" :value="color.id" />
-              <span class="colors__value" :style="`background-color: ${color.color}`">
+              <span class="colors__value" :style="`background-color: ${color.code}`">
               </span>
             </label>
           </li>
@@ -142,7 +142,6 @@
 </template>
 
 <script>
-import colors from '@/data/colors';
 import axios from 'axios';
 import { API_BASE_URL } from '../config';
 
@@ -155,6 +154,7 @@ export default {
       currentColor: 0,
 
       categoriesData: null,
+      colorsData: null,
     };
   },
   props: ['priceFrom', 'priceTo', 'categoryId', 'colorId'],
@@ -163,7 +163,7 @@ export default {
       return this.categoriesData ? this.categoriesData.items : [];
     },
     colors() {
-      return colors;
+      return this.colorsData ? this.colorsData.items : [];
     },
   },
   watch: {
@@ -198,9 +198,15 @@ export default {
         // eslint-disable-next-line no-return-assign
         .then((response) => this.categoriesData = response.data);
     },
+    loadColors() {
+      axios.get(`${API_BASE_URL}/api/colors`)
+        // eslint-disable-next-line no-return-assign
+        .then((response) => this.colorsData = response.data);
+    },
   },
   created() {
     this.loadCategories();
+    this.loadColors();
   },
 };
 </script>

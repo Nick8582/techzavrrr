@@ -63,7 +63,6 @@ export default {
     };
   },
   computed: {
-
     products() {
       return this.productsData
         ? this.productsData.items.map((product) => ({
@@ -90,6 +89,7 @@ export default {
               categoryId: this.filterCategoryId,
               minPrice: this.filterPriceFrom,
               maxPrice: this.filterPriceTo,
+              colorId: this.filterColorId,
             },
           })
           // eslint-disable-next-line no-return-assign
@@ -112,6 +112,9 @@ export default {
       this.loadProducts();
     },
     filterCategoryId() {
+      this.loadProducts();
+    },
+    filterColorId() {
       this.loadProducts();
     },
   },
