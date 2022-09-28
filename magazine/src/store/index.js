@@ -14,6 +14,9 @@ export default new Vuex.Store({
     cartProductsData: [],
   },
   mutations: {
+    updateUserKey(state, key) {
+      state.userAccessKey = key;
+    },
     addProductToCart(state, { productId, amount }) {
       // eslint-disable-next-line no-shadow
       const item = state.cartProducts.find((item) => item.productId === productId);
@@ -51,21 +54,17 @@ export default new Vuex.Store({
     },
   },
   getters: {
+    // eslint-disable-next-line consistent-return
     cartDetailProducts(state) {
-      return state.cartProducts.map((item) => {
-        const { product } = state.cartProductsData.find((p) => p.product.id === item.productId).product;
-
-        return {
-          ...item,
-          product: {
-            ...product,
-            image: product.image.file.url,
-          },
-        };
-      });
+      if (state.cartProducts) {
+        return state.cartProducts;
+      }
     },
     cartTotalPrice(state, getters) {
       return getters.cartDetailProducts.reduce((acc, item) => (item.product.price * item.amount) + acc, 0);
+    },
+    amountProduct(state, getters) {
+      return getters.cartDetailsProduct.reduce((acc, item) => item.amount + acc, 0);
     },
   },
   actions: {
