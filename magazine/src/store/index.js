@@ -11,13 +11,12 @@ export default new Vuex.Store({
   state: {
     cartProducts: [],
     userAccessKey: null,
-    cartProductsData: [],
   },
   mutations: {
     updateUserKey(state, key) {
       state.userAccessKey = key;
     },
-    addProductToCart(state, { productId, amount }) {
+    addProductToCart(state, { productId, amount, product }) {
       // eslint-disable-next-line no-shadow
       const item = state.cartProducts.find((item) => item.productId === productId);
 
@@ -27,6 +26,7 @@ export default new Vuex.Store({
         state.cartProducts.push({
           productId,
           amount,
+          product,
         });
       }
     },
@@ -44,10 +44,10 @@ export default new Vuex.Store({
       state.userAccessKey = accessKey;
     },
     updateCartProductsData(state, items) {
-      state.cartProductsData = items;
+      state.cartProducts = items;
     },
     syncCartProducts(state) {
-      state.cartProducts = state.cartProductsData.map((item) => ({
+      state.cartProducts = state.cartProducts.map((item) => ({
         productId: item.product.id,
         amount: item.quantity,
       }));
@@ -60,11 +60,11 @@ export default new Vuex.Store({
         return state.cartProducts;
       }
     },
-    cartTotalPrice(state, getters) {
-      return getters.cartDetailProducts.reduce((acc, item) => (item.product.price * item.amount) + acc, 0);
+    cartTotalPrice(state) {
+      return state.cartProducts.reduce((acc, item) => (item.product.price * item.amount) + acc, 0);
     },
-    amountProduct(state, getters) {
-      return getters.cartDetailsProduct.reduce((acc, item) => item.amount + acc, 0);
+    amountProduct(state) {
+      return state.cartProducts.reduce((acc, item) => item.amount + acc, 0);
     },
   },
   actions: {
