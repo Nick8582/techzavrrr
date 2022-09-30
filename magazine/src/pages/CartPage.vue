@@ -7,7 +7,7 @@
     <div class="content__top">
       <ul class="breadcrumbs">
         <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link" :to="{ name: 'main' }"> Каталог </a>
+          <router-link class="breadcrumbs__link" :to="{ name: 'main' }"> Каталог </router-link>
         </li>
         <li class="breadcrumbs__item">
           <a class="breadcrumbs__link"> Корзина </a>
