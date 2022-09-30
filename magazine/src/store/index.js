@@ -16,20 +16,6 @@ export default new Vuex.Store({
     updateUserKey(state, key) {
       state.userAccessKey = key;
     },
-    addProductToCart(state, { productId, amount, product }) {
-      // eslint-disable-next-line no-shadow
-      const item = state.cartProducts.find((item) => item.productId === productId);
-
-      if (item) {
-        item.amount += amount;
-      } else {
-        state.cartProducts.push({
-          productId,
-          amount,
-          product,
-        });
-      }
-    },
     updateCartProductAmount(state, { productId, amount }) {
       // eslint-disable-next-line no-shadow
       const item = state.cartProducts.find((item) => item.productId === productId);
@@ -69,7 +55,7 @@ export default new Vuex.Store({
   },
   actions: {
     loadCart(context) {
-      axios
+      return axios
         .get(`${API_BASE_URL}/api/baskets`, {
           params: {
             userAccessKey: context.state.userAccessKey,
@@ -83,6 +69,28 @@ export default new Vuex.Store({
           context.commit('updateCartProductsData', response.data.items);
           context.commit('syncCartProducts');
         });
+    },
+    addProductToCart(context, {
+      productId,
+      amount,
+      product,
+    }) {
+      // eslint-disable-next-line no-promise-executor-return
+      return (new Promise((resolve) => setTimeout(resolve, 2000)))
+        .then(() => axios
+          .post(`${API_BASE_URL}/api/baskets/products`, {
+            productId,
+            product,
+            quantity: amount,
+          }, {
+            params: {
+              userAccessKey: context.state.userAccessKey,
+            },
+          })
+          .then((response) => {
+            context.commit('updateCartProductsData', response.data.items);
+            context.commit('syncCartProducts');
+          }));
     },
   },
 });
