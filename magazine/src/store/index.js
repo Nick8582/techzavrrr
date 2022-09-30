@@ -70,11 +70,7 @@ export default new Vuex.Store({
           context.commit('syncCartProducts');
         });
     },
-    addProductToCart(context, {
-      productId,
-      amount,
-      product,
-    }) {
+    addProductToCart(context, { productId, amount, product }) {
       // eslint-disable-next-line no-promise-executor-return
       return (new Promise((resolve) => setTimeout(resolve, 2000)))
         .then(() => axios
@@ -91,6 +87,31 @@ export default new Vuex.Store({
             context.commit('updateCartProductsData', response.data.items);
             context.commit('syncCartProducts');
           }));
+    },
+    updateCartProductAmount(context, { productId, amount, product }) {
+      context.commit('updateCartProductAmount', { productId, amount, product });
+
+      if (amount < 1) {
+        return;
+      }
+
+      // eslint-disable-next-line consistent-return
+      return axios
+        .put(`${API_BASE_URL}/api/baskets/products`, {
+          productId,
+          product,
+          quantity: amount,
+        }, {
+          params: {
+            userAccessKey: context.state.userAccessKey,
+          },
+        })
+        .then((response) => {
+          context.commit('updateCartProductsData', response.data.items);
+        })
+        .catch(() => {
+          context.commit('syncCartProducts');
+        });
     },
   },
 });
