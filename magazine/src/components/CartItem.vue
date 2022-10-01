@@ -39,7 +39,7 @@
       class="product__del button-del"
       type="button"
       aria-label="Удалить товар из корзины"
-      @click.prevent="deliteProduct(item.productId)"
+      @click.prevent="deleteProduct(item.productId)"
     >
       <svg width="20" height="20" fill="currentColor">
         <use xlink:href="#icon-close"></use>
@@ -66,7 +66,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations({ deliteProduct: 'deliteCartProduct' }),
+    ...mapMutations({ deleteProduct: 'deleteCartProduct' }),
   },
 };
 </script>
