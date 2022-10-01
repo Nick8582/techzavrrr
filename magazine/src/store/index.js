@@ -14,6 +14,10 @@ export default new Vuex.Store({
     cartProductsData: [],
   },
   mutations: {
+    resetCart(state) {
+      state.cartProducts = [];
+      state.cartProductsData = [];
+    },
     updateUserKey(state, key) {
       state.userAccessKey = key;
     },

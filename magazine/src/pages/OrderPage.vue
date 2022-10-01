@@ -5,14 +5,14 @@
   <div class="content__top">
     <ul class="breadcrumbs">
       <li class="breadcrumbs__item">
-        <a class="breadcrumbs__link" href="index.html">
+        <router-link class="breadcrumbs__link" :to="{ name: 'main' }">
           Каталог
-        </a>
+        </router-link>
       </li>
       <li class="breadcrumbs__item">
-        <a class="breadcrumbs__link" href="cart.html">
+        <router-link class="breadcrumbs__link" :to="{ name: 'cart' }">
           Корзина
-        </a>
+        </router-link>
       </li>
       <li class="breadcrumbs__item">
         <a class="breadcrumbs__link">
@@ -30,7 +30,7 @@
   </div>
 
   <section class="cart">
-    <form class="cart__form form" action="#" method="POST">
+    <form class="cart__form form" action="#" method="POST" @submit.prevent="order">
       <div class="cart__field">
         <div class="cart__data">
           <BaseFormText
@@ -58,8 +58,8 @@
           <BaseFormTextarea
             title="Комментарий к заказу"
             placeholder="Ваши пожелания"
-            v-model="formData.comments"
-            :error="formError.comments" />
+            v-model="formData.comment"
+            :error="formError.comment" />
         </div>
 
         <div class="cart__options">
@@ -134,10 +134,10 @@
           Оформить заказ
         </button>
       </div>
-      <div class="cart__error form__error-block">
+      <div class="cart__error form__error-block" v-if="formErrorMessage">
         <h4>Заявка не отправлена!</h4>
         <p>
-          Похоже произошла ошибка. Попробуйте отправить снова или перезагрузите страницу.
+          {{ formErrorMessage }}
         </p>
       </div>
     </form>
@@ -148,6 +148,9 @@
 <script>
 import BaseFormText from '@/components/BaseFormText.vue';
 import BaseFormTextarea from '@/components/BaseFormTextarea.vue';
+import axios from 'axios';
+import { API_BASE_URL } from '@/config';
+import gotoPage from '@/helpers/gotoPage';
 
 export default {
   components: { BaseFormTextarea, BaseFormText },
@@ -155,7 +158,30 @@ export default {
     return {
       formData: {},
       formError: {},
+      formErrorMessage: '',
     };
+  },
+  methods: {
+    gotoPage,
+    order() {
+      this.formError = {};
+      this.formErrorMessage = '';
+      axios
+        .post(`${API_BASE_URL}/api/orders`, {
+          ...this.formData,
+        }, {
+          params: {
+            userAccessKey: this.$store.state.userAccessKey,
+          },
+        })
+        .then(() => {
+          this.$store.commit('resetCart');
+        })
+        .catch((error) => {
+          this.formError = error.response.data.error.request || {};
+          this.formErrorMessage = error.response.data.error.message;
+        });
+    },
   },
 };
 </script>
