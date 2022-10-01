@@ -108,12 +108,8 @@ export default new Vuex.Store({
             userAccessKey: context.state.userAccessKey,
           },
         })
-        .then((response) => {
-          context.commit('updateCartProductsData`', response.data.items);
-        })
-        .catch(() => {
-          context.commit('syncCartProducts');
-        });
+        .then((response) => context.commit('updateCartProductsData`', response.data.items))
+        .catch(() => context.commit('syncCartProducts'));
     },
     deleteCartProduct(context, productId) {
       context.commit('updateCartProductAmount', productId);

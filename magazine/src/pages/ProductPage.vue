@@ -115,22 +115,7 @@
             </fieldset>
 
             <div class="item__row">
-              <div class="form__counter">
-                <button type="button" aria-label="Убрать один товар" @mousedown="dizcriment">
-                  <svg width="12" height="12" fill="currentColor">
-                    <use xlink:href="#icon-minus"></use>
-                  </svg>
-                </button>
-
-                <input type="text" v-model.number="productAmount" />
-
-                <button type="button" aria-label="Добавить один товар" @mousedown="increment">
-                  <svg width="12" height="12" fill="currentColor">
-                    <use xlink:href="#icon-plus"></use>
-                  </svg>
-                </button>
-              </div>
-
+              <AppCounter v-model.number="productAmount" />
               <button class="button button--primery" type="submit" :disabled="productAddSending">
                 В корзину
               </button>
@@ -204,6 +189,7 @@
 </template>
 
 <script>
+import AppCounter from '@/components/AppCounter.vue';
 import colors from '@/data/colors';
 import gotoPage from '@/helpers/gotoPage';
 import numberFormat from '@/helpers/numberFormat';
@@ -212,6 +198,9 @@ import { API_BASE_URL } from '@/config';
 import { mapActions } from 'vuex';
 
 export default {
+  components: {
+    AppCounter,
+  },
   filters: {
     numberFormat,
   },
