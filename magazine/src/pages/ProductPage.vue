@@ -53,19 +53,17 @@
             <fieldset class="form__block">
               <legend class="form__legend">Цвет:</legend>
               <ul class="colors">
-                <li class="colors__item" v-for="color in product.colorsId" :key="color">
+                <li class="colors__item" v-for="color in product.colors" :key="color.id">
                   <label class="colors__label">
                     <input
                       class="colors__radio sr-only"
                       type="radio"
-                      name="color-item"
-                      :value="color"
+                      :name="color.title"
+                      :value="color.id"
                     />
                     <span
                       class="colors__value"
-                      :style="`background-color: ${
-                        colorItems[color - 1].color
-                      }`"
+                      :style="`background-color: ${color.code}`"
                     >
                     </span>
                   </label>
@@ -117,11 +115,11 @@
             <div class="item__row">
               <AppCounter v-model.number="productAmount" />
               <button class="button button--primery" type="submit" :disabled="productAddSending">
-                В корзину
+                <div>В корзину</div>
               </button>
+              <Loader v-if="productAddSending"></Loader>
             </div>
             <div v-show="productAdded">Товар добавлен в корзину</div>
-            <div v-show="productAddSending">Добавляем товар в корзину...</div>
           </form>
         </div>
       </div>
@@ -190,6 +188,7 @@
 
 <script>
 import AppCounter from '@/components/AppCounter.vue';
+import Loader from '@/components/Loader.vue';
 import colors from '@/data/colors';
 import gotoPage from '@/helpers/gotoPage';
 import numberFormat from '@/helpers/numberFormat';
@@ -200,6 +199,7 @@ import { mapActions } from 'vuex';
 export default {
   components: {
     AppCounter,
+    Loader,
   },
   filters: {
     numberFormat,

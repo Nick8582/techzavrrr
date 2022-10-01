@@ -17,8 +17,7 @@
         :category-id.sync="filterCategoryId"
         :color-id.sync="filterColorId"
       />
-
-      <div v-if="productsLoading">Загрузка товаров...</div>
+      <Loader v-if="productsLoading"></Loader>
       <div v-if="productsLoadingFailed">Произошла ошибка при загрузке товаров
         <button @click.prevent="loadProducts">Попробовать еще раз</button>
       </div>
@@ -43,11 +42,14 @@ import ProductList from '@/components/ProductList.vue';
 import BasePagination from '@/components/BasePagination.vue';
 import ProductFilter from '@/components/ProductFilter.vue';
 import axios from 'axios';
-import { API_BASE_URL } from '../config';
+import Loader from '@/components/Loader.vue';
+import { API_BASE_URL } from '@/config';
 
 export default {
   name: 'MainPage',
-  components: { ProductList, BasePagination, ProductFilter },
+  components: {
+    Loader, ProductList, BasePagination, ProductFilter,
+  },
   data() {
     return {
       filterPriceFrom: 0,
