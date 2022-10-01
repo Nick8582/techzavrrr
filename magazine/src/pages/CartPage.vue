@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-deprecated-router-link-tag-prop -->
 <!-- eslint-disable vue/no-deprecated-filter -->
 <!-- eslint-disable max-len -->
 <!-- eslint-disable vuejs-accessibility/form-control-has-label -->
@@ -34,9 +35,9 @@
           </p>
           <p class="cart__price">Итого: <span>{{ totalPrice | numberFormat }} ₽</span></p>
 
-          <button class="cart__button button button--primery" type="submit">
+          <router-link tag="button" :to="{name: 'order'}" class="cart__button button button--primery" type="submit">
             Оформить заказ
-          </button>
+          </router-link>
         </div>
       </form>
     </section>
