@@ -79,6 +79,9 @@ export default {
     orderInfo() {
       return this.$store.state.orderInfo || {};
     },
+    loadOrderInfo() {
+      return this.$store.state.loaderOrderInfo;
+    },
     status() {
       return this.orderInfo.status ? this.orderInfo.status.title : '';
     },
@@ -91,6 +94,19 @@ export default {
         { key: 'Способ оплаты', value: 'Оплата картой', id: 5 },
         { key: 'Статус заказа', value: this.status, id: 6 },
       ];
+    },
+  },
+  watch: {
+    '$route.params.id': {
+      handler() {
+        this.$store.commit('loadOrderInfoStatus', true);
+        if (this.loaderOrderInfo && this.loaderOrderInfo.id === this.$route.params.id) {
+          this.$store.commit('loadOrderInfoStatus', false);
+          return;
+        }
+        this.$store.dispatch('loaderOrderInfo', this.$route.params.id);
+      },
+      immediate: true,
     },
   },
 };
