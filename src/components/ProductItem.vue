@@ -14,7 +14,7 @@
       </a>
     </h3>
 
-    <span class="catalog__price"> {{ product.price | numberFormat }} ₽ </span>
+    <span class="catalog__price"> {{ pricePretty }} ₽ </span>
 
     <ul class="colors colors--black">
       <li class="colors__item"  v-for="color in product.colors" :key="color.id">
@@ -43,9 +43,6 @@ import numberFormat from '@/helpers/numberFormat';
 
 export default {
   name: 'ProductItem',
-  filters: {
-    numberFormat,
-  },
   data() {
     return {
       colorM: '',
@@ -57,6 +54,9 @@ export default {
     gotoPage,
   },
   computed: {
+    pricePretty() {
+      return numberFormat(this.product.price);
+    },
     categories() {
       return colors;
     },

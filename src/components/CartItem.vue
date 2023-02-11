@@ -18,7 +18,7 @@
     <AppCounter v-model.number="amount" class="product__counter" />
 
     <b class="product__price">
-      {{ (item.amount * item.product.price) | numberFormat }} ₽
+      {{ totalPricePretty }} ₽
     </b>
 
     <button
@@ -35,15 +35,17 @@
 </template>
 
 <script>
-import AppCounter from '@/components/AppCounter.vue';
 import numberFormat from '@/helpers/numberFormat';
+import AppCounter from '@/components/AppCounter.vue';
 import { mapActions } from 'vuex';
 
 export default {
   components: { AppCounter },
-  filters: { numberFormat },
   props: ['item'],
   computed: {
+    totalPricePretty() {
+      return numberFormat(this.item.amount * this.item.product.price);
+    },
     amount: {
       get() {
         return this.item.amount;

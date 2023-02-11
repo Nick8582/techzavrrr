@@ -1,14 +1,12 @@
 /* eslint-disable linebreak-style */
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import MainPage from '@/pages/MainPage.vue';
 import NotFoundPage from '@/pages/NotFoundPage.vue';
 import ProductPage from '@/pages/ProductPage.vue';
 import CartPage from '@/pages/CartPage.vue';
 import OrderPage from '@/pages/OrderPage.vue';
 import OrderInfoPage from '@/pages/OrderInfoPage.vue';
-
-Vue.use(VueRouter);
+import config from '../../vue.config';
 
 const routes = [
   { name: 'main', component: MainPage, path: '/' },
@@ -16,10 +14,11 @@ const routes = [
   { name: 'cart', component: CartPage, path: '/cart' },
   { name: 'order', component: OrderPage, path: '/order' },
   { name: 'orderInfo', component: OrderInfoPage, path: '/order/:id' },
-  { name: 'notFound', component: NotFoundPage, path: '*' },
+  { name: 'notFound', component: NotFoundPage, path: '/:pathMatch(.*)*' },
 ];
 
-const router = new VueRouter({
+const router = createRouter({
+  history: createWebHistory(config.publicPath),
   routes,
 });
 
