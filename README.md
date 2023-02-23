@@ -1,6 +1,7 @@
 # VueProject
 
 ## The online store "Tehnozavrrr" - a folder called 'magazine' contains a project on the VUE JS framework, the very first project on this framework.
+### Transferring the project to the Vue 3 framework
 >  This project uses:  
 >  :one: Vue v2.7.10  
 >  :two: Vue-router v3.6.5  
