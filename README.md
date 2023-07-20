@@ -1,32 +1,23 @@
-# VueProject
-
-## The online store "Tehnozavrrr" - a folder called 'magazine' contains a project on the VUE JS framework, the very first project on this framework.
-### Transferring the project to the Vue 3 framework
->  This project uses:  
->  :one: Vue v2.7.10  
->  :two: Vue-router v3.6.5  
->  :three: Vuex v3.6.2  
->  :four: axios  
->  This project is still in the works, the list will be replenished :blush:
+# techzavrrr
 
 ## Project setup
 ```
-npm install
+yarn install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+yarn serve
 ```
 
 ### Compiles and minifies for production
 ```
-npm run build
+yarn build
 ```
 
 ### Lints and fixes files
 ```
-npm run lint
+yarn lint
 ```
 
 ### Customize configuration

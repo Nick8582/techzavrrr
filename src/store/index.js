@@ -1,8 +1,6 @@
-/* eslint-disable max-len */
-/* eslint-disable linebreak-style */
-import { createStore } from 'vuex';
-import axios from 'axios';
-import { API_BASE_URL } from '@/config';
+import {createStore} from 'vuex'
+import axios from "axios";
+import {API_BASE_URL} from "@/config";
 
 export default createStore({
   state: {
@@ -22,8 +20,7 @@ export default createStore({
     updateUserKey(state, key) {
       state.userAccessKey = key;
     },
-    updateCartProductAmount(state, { productId, amount }) {
-      // eslint-disable-next-line no-shadow
+    updateCartProductAmount(state, {productId, amount}) {
       const item = state.cartProducts.find((item) => item.productId === productId);
       if (item) {
         item.amount = amount;
@@ -47,7 +44,6 @@ export default createStore({
     },
   },
   getters: {
-    // eslint-disable-next-line consistent-return
     cartDetailProducts(state) {
       if (state.cartProducts) {
         return state.cartProducts;
@@ -93,8 +89,7 @@ export default createStore({
           context.commit('syncCartProducts');
         });
     },
-    addProductToCart(context, { productId, amount, product }) {
-      // eslint-disable-next-line no-promise-executor-return
+    addProductToCart(context, {productId, amount, product}) {
       return (new Promise((resolve) => setTimeout(resolve, 2000)))
         .then(() => axios
           .post(`${API_BASE_URL}/api/baskets/products`, {
@@ -111,14 +106,11 @@ export default createStore({
             context.commit('syncCartProducts');
           }));
     },
-    updateCartProductAmount(context, { productId, amount, product }) {
-      context.commit('updateCartProductAmount', { productId, amount, product });
-
+    updateCartProductAmount(context, {productId, amount, product}) {
+      context.commit('updateCartProductAmount', {productId, amount, product});
       if (amount < 1) {
         return;
       }
-
-      // eslint-disable-next-line consistent-return
       return axios
         .put(`${API_BASE_URL}/api/baskets/products`, {
           productId,
@@ -129,12 +121,11 @@ export default createStore({
             userAccessKey: context.state.userAccessKey,
           },
         })
-        .then((response) => context.commit('updateCartProductsData`', response.data.items))
+        .then((response) => context.commit('updateCartProductsData', response.data.items))
         .catch(() => context.commit('syncCartProducts'));
     },
     deleteCartProduct(context, productId) {
       context.commit('updateCartProductAmount', productId);
-
       return axios
         .delete(`${API_BASE_URL}/api/baskets/products`, {
           data: {
